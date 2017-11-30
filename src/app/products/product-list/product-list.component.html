@@ -1,0 +1,21 @@
+
+
+  
+<h2>Info Inventory</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Place</th>
+    </tr>
+  
+    <tr  *ngFor="let inventory of inventory">
+      <td>{{ inventory.name }}</td>
+      <td>{{ inventory.price }}</td>
+      <td> {{ inventory.color }} </td>
+      <td> {{ inventory.place}}</td>
+      </tr>
+ 
+  
+  </table>
