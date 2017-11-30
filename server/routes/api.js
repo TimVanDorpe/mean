@@ -92,7 +92,7 @@ router.get('/employees', (req, res) => {
 
         //PUT
 
-          router.put('/employees/:id', (req, res) => {
+        router.put('/employees/:id', (req, res) => {
             const id = req.params.id;
             const details = { '_id': new ObjectID(id) };
             const employee = { name: req.body.name, age: req.body.age , wage: req.body.wage , email: req.body.email };
@@ -106,6 +106,21 @@ router.get('/employees', (req, res) => {
             });
     });
           });
+
+//Delete Employee
+router.delete('/employees/:id', (req, res) => {
+    connection((db) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    db.collection('employees').remove(details, (err, item) => {
+      if (err) {
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send('Employee ' + id + ' deleted!');
+      } 
+    });
+    });
+  });
 /*
 router.post('/employees', (req, res) => {
     connection((db) => {

@@ -27,7 +27,7 @@ export class EmployeesComponent  {
     this._dataService.getEmployees()
         .subscribe(res => this.employees = res);   
 }
- addEmployee(event){
+    addEmployee(event){
         event.preventDefault();
         var newEmployee = {
             name: this.name,

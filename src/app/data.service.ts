@@ -37,5 +37,15 @@ addEmployee(newEmployee){
         return this._http.post('/api/employees', JSON.stringify(newEmployee), {headers: headers})
             .map(res => res.json());
     }
-
+  deleteEmployee(id){
+        return this._http.delete('/api/employees/'+id)
+            .map(res => res.json());
+    }
+    
+    updateEmployee(newEmployee){
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this._http.put('/api/employees/'+newEmployee._id, JSON.stringify(newEmployee), {headers: headers})
+            .map(res => res.json());
+    }
 }

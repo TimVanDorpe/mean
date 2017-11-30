@@ -13,7 +13,13 @@
       <td>{{ employees.name }}</td>
       <td>{{ employees.age }}</td>
       <td> {{ employees.email }} </td>
-      <td> {{employees.wage}}</td>
+      <td> {{ employees.wage}}</td>
+      <td>{{employees._id}}</td>
+      <td>
+      <a href="" data-ng-click="updateEmployee(employees._id)">Edit</a> |
+      <a href="" data-ng-click="deleteEmployee(employees._id)">Delete</a>
+       <input type="button" value="Delete" (click)="deleteEmployee(employees._id)" class="btn btn-danger" />
+      </td>
       </tr>
  
   
