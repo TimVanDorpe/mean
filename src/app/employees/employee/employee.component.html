@@ -1,21 +1,22 @@
 <h2>Add employee</h2>
-<form (submit)="addEmployee($event)">
+
+<form (submit)="addEmployee($event)" name="myForm" >
   <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    <input type="text" class="form-control" [(ngModel)]="name" name="name" required>
   </div>
   <div class="form-group">
     <label for="age">Age:</label>
-    <input type="text" class="form-control" [(ngModel)]="age" name="age">
+    <input type="number" class="form-control" [(ngModel)]="age" name="age" required>
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input type="text" class="form-control" [(ngModel)]="email" name="email">
+    <input type="email" class="form-control" [(ngModel)]="email" name="email" required>
   </div>
   <div class="form-group">
     <label for="wage">Wage:</label>
-    <input type="text" class="form-control" [(ngModel)]="wage" name="wage">
+    <input type="number" class="form-control" [(ngModel)]="wage" name="wage" required >
   </div>
   
-  <button type="submit" (submit)="addEmployee($event)" class="btn btn-default">Submit</button>
+  <button type="submit"  (click)="reload()" (submit)="addEmployee($event)" class="btn btn-default">Submit</button>
 </form>

@@ -1,15 +1,42 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 
 // Import the DataService & userService
 import { DataService } from './data.service';
 import { UserService } from './user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  myform : FormGroup;
+
+  ngOnInit()
+  {
+    this.myform = new FormGroup({
+        name: new FormGroup({
+            name: new FormControl('', Validators.required)
+            
+        }),
+        email: new FormControl('', [ 
+            Validators.required,
+            Validators.pattern("[^ @]*@[^ @]*") 
+        ]),
+        age: new FormControl('', [
+            Validators.min(16), 
+            Validators.required
+        ]),
+        wage: new FormControl('', [
+            Validators.min(1200), 
+            Validators.required
+        ]) 
+    });
+  }
+
+
   
   // Define a users property to hold our user data
   users: Array<any>;
@@ -19,6 +46,7 @@ export class AppComponent {
   employees: Array<any>;
 
   tasks: Array<any>;
+  
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService, private user : UserService) {
@@ -32,6 +60,7 @@ export class AppComponent {
         .subscribe(res => this.employees = res);
     this._dataService.getTasks()
         .subscribe(res => this.tasks = res);
+  
   }
    
 }

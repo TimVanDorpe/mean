@@ -20,19 +20,22 @@ export class EmployeeListComponent implements OnInit {
     this._dataService.getEmployees()
         .subscribe(res => this.employees = res);
    }
-    deleteTask(id){
+    deleteEmployee(id){
         var employees = this.employees;
         
-        this._dataService.deleteEmployee(id).subscribe(data => {
-            if(data.n == 1){
+        this._dataService.deleteEmployee(id)
+    .subscribe(data => {
+            
                 for(var i = 0;i < employees.length;i++){
                     if(employees[i]._id == id){
-                        employees.splice(i, 1);
+                        this.employees.splice(i, 1);
                     }
                 }
-            }
+            
         });
+         window.location.reload();
     }
+    
     
     updateEmployee(employee){
         var _employee = {

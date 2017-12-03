@@ -17,6 +17,7 @@ export class UserService {
     return this._http.get("/api/users")
       .map(result => this.result = result.json().data);
   }
+  
 
 
   setUserLoggedIn() {

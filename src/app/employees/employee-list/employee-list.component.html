@@ -9,16 +9,18 @@
       <th>Wage</th>
     </tr>
   
-    <tr  *ngFor="let employees of employees">
-      <td>{{ employees.name }}</td>
-      <td>{{ employees.age }}</td>
-      <td> {{ employees.email }} </td>
-      <td> {{ employees.wage}}</td>
-      <td>{{employees._id}}</td>
+    <tr  *ngFor="let employee of employees">
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.age }}</td>
+      <td> {{ employee.email }} </td>
+      <td> {{ employee.wage}}</td>
+      
       <td>
-      <a href="" data-ng-click="updateEmployee(employees._id)">Edit</a> |
-      <a href="" data-ng-click="deleteEmployee(employees._id)">Delete</a>
-       <input type="button" value="Delete" (click)="deleteEmployee(employees._id)" class="btn btn-danger" />
+      <!-- <button  class="btn btn-success" (click)="updateEmployee(employee._id)">Delete</button>  -->    
+      <button  class="btn btn-danger" (click)="deleteEmployee(employee._id)">Delete</button>
+    
+      
+       
       </td>
       </tr>
  

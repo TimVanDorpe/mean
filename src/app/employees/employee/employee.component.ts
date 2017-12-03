@@ -3,14 +3,14 @@ import { Component, OnInit } from '@angular/core';
 // Import the DataService
 import { DataService } from '../../data.service';
 
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit {
   
 //define an array for all the employeeees
   employees: Array<any>;
@@ -19,7 +19,29 @@ export class EmployeeComponent {
   wage : 0;
   email : string;
   
+myform : FormGroup;
 
+  ngOnInit()
+  {
+    this.myform = new FormGroup({
+        name: new FormGroup({
+            name: new FormControl('', Validators.required)
+            
+        }),
+        email: new FormControl('', [ 
+            Validators.required,
+            Validators.pattern("[^ @]*@[^ @]*") 
+        ]),
+        age: new FormControl('', [
+            Validators.min(16), 
+            Validators.required
+        ]),
+        wage: new FormControl('', [
+            Validators.min(1200), 
+            Validators.required
+        ]) 
+    });
+  }
 
   constructor(private _dataService: DataService) {
 
@@ -45,6 +67,9 @@ export class EmployeeComponent {
                 this.name = '';
             });
     }
+    reload() {
+    window.location.reload();
+  }
 
 }
  

@@ -10,6 +10,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["name"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>
+
 </head>
 <body>
   <app-root></app-root>

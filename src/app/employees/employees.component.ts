@@ -42,6 +42,20 @@ export class EmployeesComponent  {
                 this.name = '';
             });
     }
+    deleteEmployee(id){
+        var employees = this.employees;
+        
+        this._dataService.deleteEmployee(id)
+    .subscribe(data => {
+            if(data.n == 1){
+                for(var i = 0;i < employees.length;i++){
+                    if(employees[i]._id == id){
+                        employees.splice(i, 1);
+                    }
+                }
+            }
+        });
+    }
 
 }
 
