@@ -20,9 +20,9 @@ export class UserService {
   
 
 
-  setUserLoggedIn() {
+  setUserLoggedIn(name) {
   	this.isUserLoggedIn = true;
-    this.username = 'admin';
+    this.username = name;
   }
 
   getUserLoggedIn() {

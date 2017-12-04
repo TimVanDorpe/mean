@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserService} from '../user.service';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +10,14 @@ import {UserService} from '../user.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private router:Router, private user:UserService) { }
+  users: Array<any>;
+
+  constructor(private router:Router, private user:UserService , private _dataService : DataService) {
+       this._dataService.getUsers()
+        .subscribe(res => this.users = res);
+
+
+   }
 
   ngOnInit() {
     console.log('hit');
@@ -21,11 +29,22 @@ export class LoginFormComponent implements OnInit {
   	var username = e.target.elements[0].value;
   	var password = e.target.elements[1].value;
     
-  	
-  	if(username == 'admin' && password == 'admin') {
-      this.user.setUserLoggedIn();
-  		this.router.navigate(['employee']);
+  	for(var i = 0;i < this.users.length;i++){
+           var c = 0;
+  	if(username == this.users[i].name && password == this.users[i].pass) 
+    {
+      this.user.setUserLoggedIn(username);  		
+     // alert("You are now logged in as user " + username)
+     c++;
+      	this.router.navigate(['employee']);
   	}
+    }
+    if( c == 0)
+    alert("The combination is incorrect, please try again !");
+    else{
+      alert("You are now logged in as " + username);
+    }
+    
   }
 
 }
