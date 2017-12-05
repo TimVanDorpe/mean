@@ -48,4 +48,18 @@ addEmployee(newEmployee){
         return this._http.put('/api/employees/'+newEmployee._id, JSON.stringify(newEmployee), {headers: headers})
             .map(res => res.json());
     }
+
+addProduct(newProduct){
+        console.log("add new product" + newProduct);
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this._http.post('/api/products', JSON.stringify(newProduct), {headers: headers})
+            .map(res => res.json());
+    }
+  deleteProduct(id){
+        return this._http.delete('/api/products/'+id)
+            .map(res => res.json());
+    }
+    
+
 }

@@ -18,6 +18,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import {UserService} from './user.service';
 import {AuthguardGuard} from './authguard.guard';
 import { FooterComponent } from './footer/footer.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FooterComponent } from './footer/footer.component';
     ProductComponent,
     ProductListComponent,
     LoginFormComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,10 @@ import { FooterComponent } from './footer/footer.component';
       component : ProductsComponent }
       ,
       { path : 'login-form' ,
-      component : LoginFormComponent }]
+      component : LoginFormComponent }
+      ,
+       { path : 'register-form' ,
+      component : RegisterFormComponent }]
       )
   ],
   providers: [DataService, UserService, AuthguardGuard], // <-Add DataService

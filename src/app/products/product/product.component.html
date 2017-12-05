@@ -17,5 +17,5 @@
     <input type="text" class="form-control" [(ngModel)]="place" name="place">
   </div>
   
-  <button type="submit" (submit)="addProduct($event)" class="btn btn-default">Submit</button>
+  <button type="submit" (click)="reload()" (submit)="addProduct($event)" class="btn btn-default">Submit</button>
 </form>

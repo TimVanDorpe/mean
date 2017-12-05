@@ -10,11 +10,12 @@
       <th>Place</th>
     </tr>
   
-    <tr  *ngFor="let inventory of inventory">
-      <td>{{ inventory.name }}</td>
-      <td>{{ inventory.price }}</td>
-      <td> {{ inventory.color }} </td>
-      <td> {{ inventory.place}}</td>
+    <tr  *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td> {{ product.color }} </td>
+      <td> {{ product.place}}</td>
+      <td>  <button  class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button></td>
       </tr>
  
   

@@ -121,6 +121,49 @@ router.delete('/employees/:id', (req, res) => {
     });
     });
   });
+//delete product
+
+router.delete('/products/:id', (req, res) => {
+    connection((db) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    db.collection('inventory').remove(details, (err, item) => {
+      if (err) {
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send('Product ' + id + ' deleted!');
+      } 
+    });
+    });
+  });
+//addProduct
+router.post('/products', (req, res) => {
+
+            const products = { name: req.body.name, price: req.body.price , color: req.body.color , place: req.body.place };
+            connection((db) => {
+            db.collection('inventory').insert(products, (err, result) => {
+              if (err) { 
+                res.send({ 'error': 'An error has occurred' }); 
+              } else {
+                res.send(result.ops[0]);
+              }
+            });
+        });
+          });
+//addUser
+ router.post('/users', (req, res) => {
+
+            const users = { name: req.body.name, email: req.body.email , pass: req.body.pass };
+            connection((db) => {
+            db.collection('users').insert(users, (err, result) => {
+              if (err) { 
+                res.send({ 'error': 'An error has occurred' }); 
+              } else {
+                res.send(result.ops[0]);
+              }
+            });
+        });
+          });
 /*
 router.post('/employees', (req, res) => {
     connection((db) => {

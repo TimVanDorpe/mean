@@ -28,9 +28,10 @@ export class LoginFormComponent implements OnInit {
   	console.log(e);
   	var username = e.target.elements[0].value;
   	var password = e.target.elements[1].value;
+        var c = 0;
     
   	for(var i = 0;i < this.users.length;i++){
-           var c = 0;
+       
   	if(username == this.users[i].name && password == this.users[i].pass) 
     {
       this.user.setUserLoggedIn(username);  		
