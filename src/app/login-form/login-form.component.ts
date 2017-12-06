@@ -12,7 +12,7 @@ export class LoginFormComponent implements OnInit {
 
   users: Array<any>;
 
-  constructor(private router:Router, private user:UserService , private _dataService : DataService) {
+  constructor(private router:Router, private userService:UserService , private _dataService : DataService) {
        this._dataService.getUsers()
         .subscribe(res => this.users = res);
 
@@ -34,7 +34,7 @@ export class LoginFormComponent implements OnInit {
        
   	if(username == this.users[i].name && password == this.users[i].pass) 
     {
-      this.user.setUserLoggedIn(username);  		
+      this.userService.setUserLoggedIn(username);  		
      // alert("You are now logged in as user " + username)
      c++;
       	this.router.navigate(['employee']);

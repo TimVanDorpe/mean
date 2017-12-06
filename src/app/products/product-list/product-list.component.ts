@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Import the DataService
 import { DataService } from '../../data.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,10 +11,20 @@ import { DataService } from '../../data.service';
 })
 export class ProductListComponent implements OnInit {
   products: Array<any>;
+  productsCU : Array<any>;
+  ngOnInit() {
+  }
 
-  constructor(private _dataService: DataService) { 
- this._dataService.getInventory()
+  constructor(private _dataService: DataService , private userService: UserService) { 
+        this._dataService.getInventory()
         .subscribe(res => this.products = res);
+       
+
+         for(var i = 0;i < _dataService.getInventory.length;i++){
+                    if(_dataService.getInventory[i].name == userService.getNameUserLoggedIn()){
+                        this.productsCU.push(this.products[i]);
+                    }
+                }
 
   }
    deleteProduct(id){
@@ -32,7 +43,6 @@ export class ProductListComponent implements OnInit {
          window.location.reload();
     }
 
-  ngOnInit() {
-  }
+  
 
 }

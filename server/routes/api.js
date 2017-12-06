@@ -75,7 +75,7 @@ router.get('/employees', (req, res) => {
             });
     });
 });
-
+//addEmployee
     router.post('/employees', (req, res) => {
 
             const employees = { name: req.body.name, age: req.body.age , wage: req.body.wage , email: req.body.email };
@@ -139,7 +139,7 @@ router.delete('/products/:id', (req, res) => {
 //addProduct
 router.post('/products', (req, res) => {
 
-            const products = { name: req.body.name, price: req.body.price , color: req.body.color , place: req.body.place };
+            const products = { name: req.body.name, price: req.body.price , color: req.body.color , place: req.body.place, user: req.body.user};
             connection((db) => {
             db.collection('inventory').insert(products, (err, result) => {
               if (err) { 

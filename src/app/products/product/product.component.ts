@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import {DataService} from '../../data.service'
+
+import {UserService} from '../../user.service'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -8,17 +10,21 @@ import {DataService} from '../../data.service'
 })
 export class ProductComponent implements OnInit {
  products : Array<any>;
+ username : String;
 
 name:String;
 price:0;
 color:String;
 place:String;
 
-  constructor(private _dataService: DataService) { 
+  constructor(private _dataService: DataService, private userService: UserService) { 
    
- //get thee products from de datasrvice
+ //get the products from de dataservice
     this._dataService.getInventory()
         .subscribe(res => {this.products = res;});
+  
+
+  this.username = this.userService.getNameUserLoggedIn();
   }
  addProduct(event){        
         event.preventDefault();
@@ -26,7 +32,8 @@ place:String;
             name: this.name,
             price : this.price,
             color : this.color,
-            place : this.place            
+            place : this.place,
+            user : this.username      
         }        
         this._dataService.addProduct(newProduct)
             .subscribe(product => {
@@ -35,6 +42,7 @@ place:String;
                 this.price = 0 ;
                 this.color ='';
                 this.place = '';
+                
             });
     }
     reload() {

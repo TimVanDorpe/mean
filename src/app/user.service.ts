@@ -22,7 +22,7 @@ export class UserService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this._http.post('/api/users', JSON.stringify(newUser), {headers: headers})
-            .map(res => res.json());
+        .map(res => res.json());
     }
 
 
