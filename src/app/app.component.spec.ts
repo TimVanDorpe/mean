@@ -24,4 +24,30 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
   }));
+//app.spec.js
+/*let Request = require('request');
+describe("server",()=>{
+let server;
+beforeAll(() => {
+server = require('../app');
+});
+describe("POST /api/employees", () => {
+let data = {};
+beforeAll((done)=> {
+Request({
+method: 'POST',
+uri: 'http://localhost:4200/API/employees',
+json: true,
+body:{"name":"spaghetti"ø
+},(error, response, body) => {
+data.status = response.statusCode;
+data.body = body;
+done();
+});
+});
+it("status 200",()=>{
+expect(15).toBe(15);
+});
+});*/
+
 });
