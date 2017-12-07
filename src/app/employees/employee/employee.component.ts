@@ -17,9 +17,9 @@ export class EmployeeComponent implements OnInit {
 //define an array for all the employeeees
   employees: Array<any>;
   name : string = '';
-  age = 0;
-  wage = 0;
-  email : string = '';
+  age = null;
+  wage = null;
+  email : string = '' ;
   username : string;
   error:string;
   

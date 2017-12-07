@@ -15,7 +15,7 @@ export class EmployeesComponent  {
 
   name : string;
   age = 0;
-  wage : 0;
+  wage = 0;
   email : string;
 
 

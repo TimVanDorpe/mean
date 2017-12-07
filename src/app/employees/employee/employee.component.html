@@ -4,7 +4,7 @@
   <pre>{{f.value | json}}</pre>
   <pre>Valid? {{f.form.controls.email?.valid}}</pre>
 <pre>Dirty? {{f.form.controls.email?.dirty}}</pre>
-<pre>Touched? {{f.form.controls.email?.touched}}</pre>
+<pre>Touched? {{f.form.controls.email?.touched}}</pre> 
   <div class="form-group" [ngClass]="{
       'has-danger': f.form.controls.name?.invalid && (f.form.controls.name?.dirty || f.form.controls.name?.touched),
       'has-success': f.form.controls.name?.valid && (f.form.controls.name?.dirty || f.form.controls.name?.touched)
