@@ -1,19 +1,28 @@
 <div style="text-align:center">
   <h2 class="jumbotron">Register user</h2>
 </div>
-<form (submit)="addUser($event)">
-  <div class="form-group">
+<form (submit)="addUser($event)"  #f="ngForm">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.name?.invalid && (f.form.controls.name?.dirty || f.form.controls.name?.touched),
+      'has-success': f.form.controls.name?.valid && (f.form.controls.name?.dirty || f.form.controls.name?.touched)
+    }">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    <input type="text" class="form-control" placeholder="min 5 characters" [(ngModel)]="name" name="name" required minlength="5">
   </div>
-  <div class="form-group">
-    <label for="email">email:</label>
-    <input type="email" class="form-control" [(ngModel)]="email" name="email">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.email?.invalid && (f.form.controls.email?.dirty || f.form.controls.email?.touched),
+      'has-success': f.form.controls.email?.valid && (f.form.controls.email?.dirty || f.form.controls.email?.touched)
+    }">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" placeholder="email" [(ngModel)]="email" name="email" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
   </div>
-  <div class="form-group">
-    <label for="pass">password:</label>
-    <input type="password" class="form-control" [(ngModel)]="pass" name="pass">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.pass?.invalid && (f.form.controls.pass?.dirty || f.form.controls.pass?.touched),
+      'has-success': f.form.controls.pass?.valid && (f.form.controls.pass?.dirty || f.form.controls.pass?.touched)
+    }">
+    <label for="pass">¨Password:</label>
+    <input type="password" class="form-control" [(ngModel)]="pass" placeholder="min 8 characters" name="pass" required minlength="8">
   </div>
   
-  <button type="submit" (click)="reload()" (submit)="addUser($event)" class="btn btn-default">Submit</button>
+  <button type="submit" [disabled]="f.invalid" (click)="reload()" (submit)="addUser($event)" class="btn btn-default">Submit</button>
 </form>

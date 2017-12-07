@@ -1,22 +1,55 @@
 <h2>Add employee</h2>
 
-<form (submit)="addEmployee($event)" name="myForm" >
-  <div class="form-group">
+<form (submit)="addEmployee($event)" name="myForm"  #f="ngForm">
+  <pre>{{f.value | json}}</pre>
+  <pre>Valid? {{f.form.controls.email?.valid}}</pre>
+<pre>Dirty? {{f.form.controls.email?.dirty}}</pre>
+<pre>Touched? {{f.form.controls.email?.touched}}</pre>
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.name?.invalid && (f.form.controls.name?.dirty || f.form.controls.name?.touched),
+      'has-success': f.form.controls.name?.valid && (f.form.controls.name?.dirty || f.form.controls.name?.touched)
+    }">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" [(ngModel)]="name" name="name"  required>
-  </div>
-  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="name" placeholder="Minimum 5 characters" name="name" minlength="5" required>
+ 
+ 
+  <div class="form-control-feedback"
+     *ngIf="name.errors && (email.dirty || email.touched)">
+  <p *ngIf="name.errors.required">Name is required</p>
+  <p *ngIf="name.errors.minlength">Name must contain minimum 5 characters</p>
+</div>
+   </div>
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.age?.invalid && (f.form.controls.age?.dirty || f.form.controls.age?.touched),
+      'has-success': f.form.controls.age?.valid && (f.form.controls.age?.dirty || f.form.controls.age?.touched)
+    }" >
     <label for="age">Age:</label>
-    <input type="number" class="form-control" [(ngModel)]="age" name="age"  required>
+    <input type="number" class="form-control" [(ngModel)]="age" name="age" placeholder="Between 16 and 140" required min="16" max="140">
   </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" [(ngModel)]="email" name="email"  required>
-  </div>
-  <div class="form-group">
-    <label for="wage">Wage:</label>
-    <input type="number" class="form-control" [(ngModel)]="wage" name="wage"  required >
-  </div>
+
   
-  <button type="submit"  (click)="reload()" (submit)="addEmployee($event)" class="btn btn-default">Submit</button>
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.email?.invalid && (f.form.controls.email?.dirty || f.form.controls.email?.touched),
+      'has-success': f.form.controls.email?.valid && (f.form.controls.email?.dirty || f.form.controls.email?.touched)
+    }">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control"   [(ngModel)]="email" (ngModelChange)="email = $event" placeholder="email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email"  required>
+  
+  <div class="form-control-feedback"
+     *ngIf="email.errors && (email.dirty || email.touched)">
+  <p *ngIf="email.errors.required">Email is required</p>
+  <p *ngIf="email.errors.minlength">Email must contain at least the @ character</p>
+</div>
+</div>
+  
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.wage?.invalid && (f.form.controls.wage?.dirty || f.form.controls.wage?.touched),
+      'has-success': f.form.controls.wage?.valid && (f.form.controls.wage?.dirty || f.form.controls.wage?.touched)
+    }" >
+    <label for="wage">Wage:</label>
+    <input type="number" class="form-control" [(ngModel)]="wage" placeholder="Minimum 1000" name="wage" min="1000" required >
+  </div>
+  <label for="error" [(ngModel)]="error" class="error"></label>
+
+  <button type="submit"  (click)="reload()" [disabled]="f.invalid" (submit)="addEmployee($event)" class="btn btn-default">Submit</button>
 </form>

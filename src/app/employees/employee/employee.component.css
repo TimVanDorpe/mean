@@ -1,3 +1,6 @@
 input[type='submit']:disabled{
     background-color: #d5d6d6;
 }
+.error{
+    color : red;
+}

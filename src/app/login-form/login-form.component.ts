@@ -54,6 +54,7 @@ export class LoginFormComponent implements OnInit {
     alert("The combination is incorrect, please try again !");
     else{
       alert("You are now logged in as " + username);
+      window.location.reload();
     }
    
   }

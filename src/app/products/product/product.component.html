@@ -1,21 +1,34 @@
 <h2>Add product</h2>
-<form (submit)="addProduct($event)">
-  <div class="form-group">
+<form (submit)="addProduct($event)" #f="ngForm">
+  
+    <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.name?.invalid && (f.form.controls.name?.dirty || f.form.controls.name?.touched),
+      'has-success': f.form.controls.name?.valid && (f.form.controls.name?.dirty || f.form.controls.name?.touched)
+    }">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    <input type="text" class="form-control" [(ngModel)]="name" name="name" placeholder="Minimum 5 characters" minlength="5" required>
   </div>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.price?.invalid && (f.form.controls.price?.dirty || f.form.controls.price?.touched),
+      'has-success': f.form.controls.price?.valid && (f.form.controls.price?.dirty || f.form.controls.price?.touched)
+    }">
     <label for="price">Price:</label>
-    <input type="text" class="form-control" [(ngModel)]="price" name="price">
+    <input type="text" class="form-control" [(ngModel)]="price" name="price" placeholder="Price (number)" required>
   </div>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.color?.invalid && (f.form.controls.color?.dirty || f.form.controls.color?.touched),
+      'has-success': f.form.controls.color?.valid && (f.form.controls.color?.dirty || f.form.controls.color?.touched)
+    }">
     <label for="color">Color:</label>
-    <input type="text" class="form-control" [(ngModel)]="color" name="color">
+    <input type="text" class="form-control" [(ngModel)]="color" name="color" placeholder="Color" required>
   </div>
-  <div class="form-group">
+  <div class="form-group" [ngClass]="{
+      'has-danger': f.form.controls.place?.invalid && (f.form.controls.place?.dirty || f.form.controls.place?.touched),
+      'has-success': f.form.controls.place?.valid && (f.form.controls.place?.dirty || f.form.controls.place?.touched)
+    }">
     <label for="place">Place:</label>
-    <input type="text" class="form-control" [(ngModel)]="place" name="place">
+    <input type="text" class="form-control" [(ngModel)]="place" name="place" placeholder="Place" required>
   </div>
   
-  <button type="submit" (click)="reload()" (submit)="addProduct($event)" class="btn btn-default">Submit</button>
+  <button type="submit" (click)="reload()" [disabled]="f.invalid" (submit)="addProduct($event)" class="btn btn-default">Submit</button>
 </form>

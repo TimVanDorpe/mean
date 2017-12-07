@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {UserService} from '../user.service';
 
 @Component({
@@ -15,7 +15,7 @@ name:String;
 pass:String;
 email:String;
 
-  constructor(private userService: UserService) { 
+  constructor(private router:Router, private userService: UserService) { 
 
     this.userService.getUsers()
         .subscribe(res => {this.users = res;});
@@ -36,8 +36,11 @@ email:String;
                 this.email ='';
                 this.pass = '';
             });
+            this.router.navigate(['login-form']);
+             alert("You registered user " + this.name + ". Verify your email to log in !");
+             
     }
-    reload() {
+  reload() {
     window.location.reload();
   }
 

@@ -5,6 +5,7 @@ import { DataService } from '../../data.service';
 
 import { UserService } from '../../user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -15,32 +16,18 @@ export class EmployeeComponent implements OnInit {
   
 //define an array for all the employeeees
   employees: Array<any>;
-  name : string;
+  name : string = '';
   age = 0;
-  wage : 0;
-  email : string;
+  wage = 0;
+  email : string = '';
   username : string;
+  error:string;
   
 myform : FormGroup;
 
   ngOnInit()
   {
-    this.myform = new FormGroup({
-            nameF: new FormControl('', Validators.required)            
-        ,
-        emailF: new FormControl('', [ 
-            Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*") 
-        ]),
-        ageF: new FormControl('', [
-            Validators.min(16), 
-            Validators.required
-        ]),
-        wageF: new FormControl('', [
-            Validators.min(1200), 
-            Validators.required
-        ]) 
-    });
+    
   }
 
   constructor(private _dataService: DataService, private userService : UserService) {
@@ -56,7 +43,7 @@ myform : FormGroup;
         event.preventDefault();
 
         if(this.username == ''){
-            alert("You have to log in before you can add an employee !")
+            alert("You have to log in before you can add an employee !")           
         }
         else{
         var newEmployee = {
@@ -64,12 +51,10 @@ myform : FormGroup;
             age : this.age,
             wage : this.wage,
             email : this.email, 
-            user : this.username
-            
-        }
-        
+            user : this.username            
+        }        
         this._dataService.addEmployee(newEmployee)
-            .subscribe(employee => {
+        .subscribe(employee => {
                 this.employees.push(employee);
                 this.name = '';
                 this.age = 0 ;

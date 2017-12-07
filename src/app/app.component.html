@@ -1,25 +1,25 @@
 
 
-<div class="container">
+<div class="container background">
   <div class="class col-6">
-<h1 >Welcome to my first MEAN stack site !  {{userName}}</h1>
-<div class="right"><button type="submit" (click)="logout()" class="btn btn-default">Logout</button></div>
+<h1 >Welcome to my first MEAN stack site !  </h1>
+<div class="right"><button type="submit" (click)="logout()" class="btn btn-default">Logout {{userName}} </button></div>
 </div>
 
  <ul class="nav navbar-nav">
+   
    <li>
-  <a routerLink="/login-form">login</a>
+  <a routerLink="/login-form">Login</a>
   </li>
    <li>
-  <a routerLink="/register-form">register</a>
+  <a routerLink="/register-form">Register</a>
   </li>
    <li>
-    <a routerLink="/employee">employee</a>
+    <a routerLink="/employee">Employee</a>
   </li>
   <li>
-  <a routerLink="/product">product</a>
-  </li>
-  
+  <a routerLink="/product">Product</a>
+  </li>  
  </ul>
 <br>
 
