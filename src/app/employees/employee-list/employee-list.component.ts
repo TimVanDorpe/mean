@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // Import the DataService
 import { DataService } from '../../data.service';
 
+import { UserService } from '../../user.service';
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -12,13 +14,23 @@ export class EmployeeListComponent implements OnInit {
   
   //define an array for all the employeeees
   employees: Array<any>;
+  employeesCU: Array<any> =[];
 
 
-  constructor(private _dataService: DataService) {
+  constructor(private _dataService: DataService , private userService: UserService) {
 
     //get thee employees from de datasrvice ...:D
     this._dataService.getEmployees()
-        .subscribe(res => this.employees = res);
+        .subscribe(res => {
+        this.employees = res;
+        console.log(this.employees);
+        for(var i = 0;i < this.employees.length;i++){
+                    if(this.employees[i].user == userService.getNameUserLoggedIn())
+                    {
+                        this.employeesCU.push(this.employees[i]);
+                    }
+                }
+        });
    }
     deleteEmployee(id){
         var employees = this.employees;

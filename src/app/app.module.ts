@@ -40,11 +40,11 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     FormsModule, 
     RouterModule.forRoot([
      { path : 'employee' , 
-     /*canActivate : [AuthguardGuard],*/
+     //canActivate : [AuthguardGuard],
       component : EmployeesComponent }
       ,
        { path : 'product' ,
-       /* canActivate : [AuthguardGuard],*/
+        //canActivate : [AuthguardGuard],
       component : ProductsComponent }
       ,
       { path : 'login-form' ,

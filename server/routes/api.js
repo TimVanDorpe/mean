@@ -78,7 +78,7 @@ router.get('/employees', (req, res) => {
 //addEmployee
     router.post('/employees', (req, res) => {
 
-            const employees = { name: req.body.name, age: req.body.age , wage: req.body.wage , email: req.body.email };
+            const employees = { name: req.body.name, age: req.body.age , wage: req.body.wage , email: req.body.email , user: req.body.user};
             connection((db) => {
             db.collection('employees').insert(employees, (err, result) => {
               if (err) { 

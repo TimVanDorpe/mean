@@ -11,6 +11,7 @@ import {DataService} from '../data.service';
 export class LoginFormComponent implements OnInit {
 
   users: Array<any>;
+  
 
   constructor(private router:Router, private userService:UserService , private _dataService : DataService) {
        this._dataService.getUsers()
@@ -36,6 +37,15 @@ export class LoginFormComponent implements OnInit {
     {
       this.userService.setUserLoggedIn(username);  		
      // alert("You are now logged in as user " + username)
+     
+
+     /*localStorage.setItem(username, JSON.stringify({ token: token, name: name }));
+     var currentUser = JSON.parse(localStorage.getItem(username));
+     var token = currentUser.token; // your token
+     console.log(currentUser);
+     console.log(token);*/
+
+
      c++;
       	this.router.navigate(['employee']);
   	}
@@ -45,7 +55,7 @@ export class LoginFormComponent implements OnInit {
     else{
       alert("You are now logged in as " + username);
     }
-    
+   
   }
 
 }

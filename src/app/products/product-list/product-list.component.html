@@ -2,7 +2,7 @@
 
   
 <h2>Info Inventory</h2>
-  <table class="table">
+  <table class="table" style="overflow-x:auto;">
     <tr>
       <th>Name</th>
       <th>Price</th>
@@ -11,7 +11,7 @@
     </tr>
   
     <tr  *ngFor="let product of productsCU">
-      <td>{{ product.name }}</td>
+      <td>{{ product.name }} </td>
       <td>{{ product.price }}</td>
       <td> {{ product.color }} </td>
       <td> {{ product.place}}</td>

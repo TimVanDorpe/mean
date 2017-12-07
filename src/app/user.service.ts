@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService {
 
-  private isUserLoggedIn;
-  public username;
+  private isUserLoggedIn;  
+  public username = String;
   result:any;
 
   constructor(private _http: Http) { 
@@ -27,15 +27,21 @@ export class UserService {
 
 
   setUserLoggedIn(name) {
-  	this.isUserLoggedIn = true;
+  	this.isUserLoggedIn = true;    
+    sessionStorage.setItem('username', name);
     this.username = name;
   }
   getNameUserLoggedIn()
   {
-    return this.username;
+    return sessionStorage.getItem('username');
   }
   getUserLoggedIn() {
   	return this.isUserLoggedIn;
+  }
+  logout(){
+    sessionStorage.setItem('username', "");
+    this.isUserLoggedIn = false;
+    window.location.reload();
   }
 
 }

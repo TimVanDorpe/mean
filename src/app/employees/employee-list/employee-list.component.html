@@ -1,7 +1,7 @@
 
   
 <h2>Info employees</h2>
-  <table class="table">
+  <table class="table" style="overflow-x:auto;">
     <tr>
       <th>Name</th>
       <th>Age</th>
@@ -9,7 +9,7 @@
       <th>Wage</th>
     </tr>
   
-    <tr  *ngFor="let employee of employees">
+    <tr  *ngFor="let employee of employeesCU">
       <td>{{ employee.name }}</td>
       <td>{{ employee.age }}</td>
       <td> {{ employee.email }} </td>

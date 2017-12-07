@@ -47,6 +47,11 @@ export class AppComponent implements OnInit {
 
   tasks: Array<any>;
   
+  loggedIn : boolean;
+
+  userName : String;
+
+  userService : UserService;
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService, private user : UserService) {
@@ -54,6 +59,10 @@ export class AppComponent implements OnInit {
     // Access the Data Service's  method we defined
     this._dataService.getUsers()
         .subscribe(res => this.users = res);
+    this.userService = this.user;
+    this.loggedIn = this.user.getUserLoggedIn();
+    this.userName = this.user.getNameUserLoggedIn();
+    console.log(this.loggedIn);
     this._dataService.getInventory()
         .subscribe(res => this.inventory = res);
     this._dataService.getEmployees()
@@ -61,6 +70,10 @@ export class AppComponent implements OnInit {
     this._dataService.getTasks()
         .subscribe(res => this.tasks = res);
   
+  }
+  logout(){
+      this.userService.logout();
+      
   }
    
 }

@@ -11,38 +11,37 @@ import { UserService } from '../../user.service';
 })
 export class ProductListComponent implements OnInit {
   products: Array<any>;
-  productsCU : Array<any>;
+  productsCU : Array<any> = [];
+  
   ngOnInit() {
   }
 
   constructor(private _dataService: DataService , private userService: UserService) { 
-        this._dataService.getInventory()
-        .subscribe(res => this.products = res);
-       
-
-         for(var i = 0;i < _dataService.getInventory.length;i++){
-                    if(_dataService.getInventory[i].name == userService.getNameUserLoggedIn()){
+     this._dataService.getInventory()
+        .subscribe((res) => {
+        this.products = res;
+        console.log(this.products);
+        for(var i = 0;i < this.products.length;i++){
+                    if(this.products[i].user == userService.getNameUserLoggedIn())
+                    {
                         this.productsCU.push(this.products[i]);
                     }
                 }
-
+        });     
+       console.log(userService.getNameUserLoggedIn());
+       console.log(this.productsCU);
+      
   }
    deleteProduct(id){
-        var products = this.products;
-        
+        var products = this.products;        
         this._dataService.deleteProduct(id)
-        .subscribe(data => {
-            
+        .subscribe(data => {            
                 for(var i = 0;i < products.length;i++){
                     if(products[i]._id == id){
                         this.products.splice(i, 1);
                     }
-                }
-            
+                }            
         });
          window.location.reload();
-    }
-
-  
-
+    } 
 }
